@@ -1,4 +1,10 @@
+local log = require('java-core.utils.log')
+
 local M = {}
+
+-- local function xxx2()
+-- 	log.debug('calling xxx2')
+-- end
 
 function M.get_config()
 	return {
@@ -22,6 +28,9 @@ function M.get_config()
 				},
 			},
 		},
+		-- handlers = {
+		-- 	['sts/addClasspathListener'] = xxx2
+		-- }
 	}
 end
 
