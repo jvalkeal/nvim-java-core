@@ -28,6 +28,18 @@ function M.get_file_list(path)
 	return vim.fn.glob(path, true, true)
 end
 
+---Returns a list of files from a path with wildcards
+---@param paths string[] paths with the wildcards
+---@return string[]
+function M.get_file_list_paths(paths)
+	local resolved = {}
+	for i = 1, #paths do
+    local p = vim.fn.glob(paths[i], true, true)
+		table.insert(resolved, table.unpack(p))
+	end
+	return resolved
+end
+
 ---Creates a directory in the given path
 ---@param path string
 ---@param opts JavaDirCreateFlags
