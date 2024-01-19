@@ -2,9 +2,18 @@ local log = require('java-core.utils.log')
 
 local M = {}
 
--- local function xxx2()
--- 	log.debug('calling xxx2')
--- end
+local function on_workspace_executeClientCommand(err, result, ctx, config)
+	log.debug('calling on_workspace_executeClientCommand err ', err)
+	log.debug('calling on_workspace_executeClientCommand result ', result)
+	log.debug('calling on_workspace_executeClientCommand ctx ', ctx)
+	log.debug('calling on_workspace_executeClientCommand config', config)
+	if (result.command == 'vscode-spring-boot.ls.start') then
+		log.debug("XXX should start boot ls")
+		require('lspconfig').bootls.setup({})
+		require('lspconfig').bootls.launch()
+  end
+	return {}
+end
 
 function M.get_config()
 	return {
@@ -28,9 +37,9 @@ function M.get_config()
 				},
 			},
 		},
-		-- handlers = {
-		-- 	['sts/addClasspathListener'] = xxx2
-		-- }
+		handlers = {
+			['workspace/executeClientCommand'] = on_workspace_executeClientCommand
+		}
 	}
 end
 

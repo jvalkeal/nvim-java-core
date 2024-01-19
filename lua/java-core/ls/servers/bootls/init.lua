@@ -21,16 +21,14 @@ function M.get_config(opts)
 	base_config.cmd = {
 		'java',
 		'-cp',
-		-- '/home/jvalkealahti/.local/share/nvim-java3/mason/packages/sts4/extension/language-server/BOOT-INF/classes:/home/jvalkealahti/.local/share/nvim-java3/mason/packages/sts4/extension/language-server/BOOT-INF/lib/*',
 		classes_root .. ":" .. lib_root,
     '-XX:+HeapDumpOnOutOfMemoryError',
     '-Xmx1024m',
     '-Dsts.lsp.client=vscode',
-    '-Dsts.log.file=/tmp/bootls.log',
+    '-Dsts.log.file=/tmp/bootls-nvim.log',
     '-XX:TieredStopAtLevel=1',
     '-Xlog:jni+resolve=off',
 		'-Dlogging.level.org.springframework=debug',
-    -- '-Dspring.config.location=file:/home/jvalkealahti/.local/share/nvim-java3/mason/packages/sts4/extension/language-server/BOOT-INF/classes/application.properties',
     '-Dspring.config.location=file:' .. application_properties,
     'org.springframework.ide.vscode.boot.app.BootLanguageServerBootApp',
 	}
